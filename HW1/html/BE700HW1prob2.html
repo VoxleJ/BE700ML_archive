@@ -1,0 +1,364 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>BE700HW1prob2</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-05"><meta name="DC.source" content="BE700HW1prob2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">BE700 HW1 Prob 2</a></li><li><a href="#2">loading and prep</a></li><li><a href="#3">Part 2</a></li><li><a href="#4">Part 3</a></li><li><a href="#5">part 4</a></li><li><a href="#6">Echoing Results</a></li></ul></div><h2 id="1">BE700 HW1 Prob 2</h2><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+warning(<span class="string">'off'</span>, <span class="string">'all'</span>) <span class="comment">%warnings got annoying</span>
+</pre><h2 id="2">loading and prep</h2><pre class="codeinput">temp = readtable(<span class="string">'winequality_red.csv'</span>, <span class="string">'HeaderLines'</span>,1);
+DataTot = temp{:,:};
+
+<span class="comment">%only want factor 3 and 1</span>
+
+t = DataTot(:,3);
+y = DataTot(:,1);
+
+<span class="comment">%Instead of making randsample bin uneven, I am going to delete last 5</span>
+<span class="comment">%values</span>
+
+t = t(1:1595,:);
+y = y(1:1595,:);
+
+<span class="comment">%standardize</span>
+
+u = (t - mean(t))./std(t);
+</pre><h2 id="3">Part 2</h2><pre class="codeinput">i = 1;
+<span class="keyword">for</span> numPEcurves = 1:1:100
+    bins = randsample(1595,1595);
+    tot = reshape(bins,319,5);
+
+    <span class="keyword">for</span> p = 1:50:3000+1
+
+        <span class="keyword">for</span> mse_val = 1:1:5
+          tot2 = tot;
+          tot2(:,mse_val) = [];
+          rn.train{mse_val} = u(tot2);
+          rn.test{mse_val} = u(tot(:,mse_val));
+          yn.train{mse_val} = y(tot2);
+          yn.test{mse_val} = y(tot(:,mse_val));
+
+          x = rn.train{mse_val}(:);
+          ynew = yn.train{mse_val}(:);
+
+          <span class="comment">%use ridge to get coeffs</span>
+          <span class="keyword">for</span> n2 = 1:9
+              X(:,n2) = x.^n2;
+          <span class="keyword">end</span>
+
+          B_hat2.t = ridge(ynew, X, p);
+          B_hat2.i{numPEcurves}{p} = B_hat2.t;
+          yfit2.t = polyval(B_hat2.i{numPEcurves}{p}', rn.test{mse_val}');
+          yfit2.i{numPEcurves}{p} = yfit2.t;
+
+          diff12.t{mse_val} = (yfit2.t - yn.test{mse_val}');
+          mse(mse_val) = 1/319 * sum(diff12.t{mse_val}.^2);
+        <span class="keyword">end</span>
+
+        MSE.t = 1/5 * sum(mse);
+        mse_tot(numPEcurves,p) = MSE.t;
+
+
+<span class="comment">%         mse_tot(mse_tot==0) = [];</span>
+<span class="comment">%         pause(10)</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+mse_tot_fx = mse_tot(:,1:50:3001);
+figure
+<span class="keyword">for</span> pp = 1:1:100
+    plot(1:50:3001, mse_tot_fx(pp,:), <span class="string">'-o'</span>)
+    hold <span class="string">on</span>
+<span class="keyword">end</span>
+<span class="comment">% legend(tfields)</span>
+ylabel(<span class="string">'PE Values'</span>)
+xlabel(<span class="string">'alpha values (L2 regularization constant'</span>)
+title(<span class="string">'PE Plot for optimum alpha'</span>)
+
+<span class="keyword">for</span> n2 = 1:9
+    X_full_standardized(:,n2) = u.^n2;
+<span class="keyword">end</span>
+
+alpha = 1251;
+w_L2 = fliplr(ridge(y, X_full_standardized, alpha, 0));
+</pre><img vspace="5" hspace="5" src="BE700HW1prob2_01.png" alt=""> <h2 id="4">Part 3</h2><pre class="codeinput"><span class="keyword">for</span> P=9
+    A= ones(length(u),P+1);
+    <span class="keyword">for</span> n1 = 1:P
+        A(:,n1+1) = u.^n1;
+    <span class="keyword">end</span>
+    B_hat.temp = (A' * A) \ (A' * y);
+    B_hat.i{P} = fliplr(B_hat.temp');
+<span class="keyword">end</span>
+
+w_ordinary = fliplr(B_hat.temp);
+</pre><h2 id="5">part 4</h2><pre class="codeinput">figure
+scatter(u,y, <span class="string">'o'</span>,<span class="string">'filled'</span>)
+hold <span class="string">on</span>
+<span class="comment">%</span>
+<span class="comment">% hold on</span>
+r_dense = -2:0.003:4;
+OLSfit = polyval(flipud(w_ordinary), r_dense);
+<span class="comment">% OLSfit = OLSfit./100</span>
+plot( r_dense, OLSfit);
+hold <span class="string">on</span>
+L2fit = polyval(flipud(w_L2), r_dense);
+plot(r_dense,L2fit)
+
+
+legend(<span class="string">'raw data'</span>, <span class="string">'OLS fit'</span>, <span class="string">'L2-Regularized LS fit'</span>)
+ylabel(<span class="string">'y (fixed acidity)'</span>)
+xlabel(<span class="string">'u (standardized t)'</span>)
+title(<span class="string">'Raw Data and Fits'</span>)
+</pre><img vspace="5" hspace="5" src="BE700HW1prob2_02.png" alt=""> <h2 id="6">Echoing Results</h2><pre class="codeinput">diary <span class="string">vjprob2.txt</span>
+echo <span class="string">on</span>
+disp(<span class="string">'Part 2'</span>)
+
+fprintf(<span class="string">'Alpha optimum is %d\n'</span>, alpha)
+
+w_L2
+
+disp(<span class="string">'Part 3'</span>)
+w_ordinary
+
+echo <span class="string">off</span>
+</pre><pre class="codeoutput">disp('Part 2')
+Part 2
+
+fprintf('Alpha optimum is %d\n', alpha)
+Alpha optimum is 1251
+
+w_L2
+
+w_L2 =
+
+    8.1915
+    0.5291
+    0.1076
+    0.0933
+    0.0024
+    0.0012
+   -0.0005
+   -0.0002
+   -0.0001
+   -0.0000
+
+
+disp('Part 3')
+Part 3
+w_ordinary
+
+w_ordinary =
+
+    7.9364
+    0.4596
+    0.9538
+    1.9247
+   -0.8556
+   -1.3396
+    0.6032
+    0.2417
+   -0.1618
+    0.0217
+
+
+echo off
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% BE700 HW1 Prob 2
+
+clear all
+close all
+warning('off', 'all') %warnings got annoying
+
+
+%% loading and prep
+temp = readtable('winequality_red.csv', 'HeaderLines',1);
+DataTot = temp{:,:};
+
+%only want factor 3 and 1
+
+t = DataTot(:,3);
+y = DataTot(:,1);
+
+%Instead of making randsample bin uneven, I am going to delete last 5
+%values
+
+t = t(1:1595,:);
+y = y(1:1595,:);
+
+%standardize
+
+u = (t - mean(t))./std(t);
+
+
+%% Part 2
+i = 1;
+for numPEcurves = 1:1:100
+    bins = randsample(1595,1595);
+    tot = reshape(bins,319,5);
+    
+    for p = 1:50:3000+1
+        
+        for mse_val = 1:1:5
+          tot2 = tot;
+          tot2(:,mse_val) = [];
+          rn.train{mse_val} = u(tot2);
+          rn.test{mse_val} = u(tot(:,mse_val));
+          yn.train{mse_val} = y(tot2);
+          yn.test{mse_val} = y(tot(:,mse_val));
+
+          x = rn.train{mse_val}(:);
+          ynew = yn.train{mse_val}(:);
+          
+          %use ridge to get coeffs
+          for n2 = 1:9
+              X(:,n2) = x.^n2;
+          end
+          
+          B_hat2.t = ridge(ynew, X, p);
+          B_hat2.i{numPEcurves}{p} = B_hat2.t;
+          yfit2.t = polyval(B_hat2.i{numPEcurves}{p}', rn.test{mse_val}'); 
+          yfit2.i{numPEcurves}{p} = yfit2.t;
+          
+          diff12.t{mse_val} = (yfit2.t - yn.test{mse_val}');
+          mse(mse_val) = 1/319 * sum(diff12.t{mse_val}.^2);         
+        end
+        
+        MSE.t = 1/5 * sum(mse);
+        mse_tot(numPEcurves,p) = MSE.t;
+        
+        
+%         mse_tot(mse_tot==0) = [];
+%         pause(10)
+    end
+end
+mse_tot_fx = mse_tot(:,1:50:3001);
+figure
+for pp = 1:1:100
+    plot(1:50:3001, mse_tot_fx(pp,:), '-o')
+    hold on
+end
+% legend(tfields)
+ylabel('PE Values')
+xlabel('alpha values (L2 regularization constant')
+title('PE Plot for optimum alpha')
+
+for n2 = 1:9
+    X_full_standardized(:,n2) = u.^n2;
+end
+
+alpha = 1251;
+w_L2 = fliplr(ridge(y, X_full_standardized, alpha, 0));
+
+%% Part 3
+
+for P=9
+    A= ones(length(u),P+1);
+    for n1 = 1:P
+        A(:,n1+1) = u.^n1;
+    end
+    B_hat.temp = (A' * A) \ (A' * y);
+    B_hat.i{P} = fliplr(B_hat.temp');
+end
+
+w_ordinary = fliplr(B_hat.temp);
+
+
+%% part 4
+figure
+scatter(u,y, 'o','filled')
+hold on
+% 
+% hold on
+r_dense = -2:0.003:4;
+OLSfit = polyval(flipud(w_ordinary), r_dense);
+% OLSfit = OLSfit./100
+plot( r_dense, OLSfit);
+hold on
+L2fit = polyval(flipud(w_L2), r_dense);
+plot(r_dense,L2fit)
+
+
+legend('raw data', 'OLS fit', 'L2-Regularized LS fit')
+ylabel('y (fixed acidity)')
+xlabel('u (standardized t)')
+title('Raw Data and Fits')
+
+%% Echoing Results
+diary vjprob2.txt
+echo on
+disp('Part 2')
+
+fprintf('Alpha optimum is %d\n', alpha)
+
+w_L2
+
+disp('Part 3')
+w_ordinary
+
+echo off
+##### SOURCE END #####
+--></body></html>

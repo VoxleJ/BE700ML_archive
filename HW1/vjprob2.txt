@@ -1,0 +1,126 @@
+disp('Part 2')
+Part 2
+
+fprintf('Alpha optimum is %d\n', alpha)
+Alpha optimum is 1251
+
+w_L2
+
+w_L2 =
+
+    8.1915
+    0.5291
+    0.1076
+    0.0933
+    0.0024
+    0.0012
+   -0.0005
+   -0.0002
+   -0.0001
+   -0.0000
+
+
+disp('Part 3')
+Part 3
+w_ordinary
+
+w_ordinary =
+
+    7.9364
+    0.4596
+    0.9538
+    1.9247
+   -0.8556
+   -1.3396
+    0.6032
+    0.2417
+   -0.1618
+    0.0217
+
+
+echo off
+com.mathworks.mde.profiler.ProfilerRunner.initInstance();
+BE700HW1prob2
+disp('Part 2')
+Part 2
+
+fprintf('Alpha optimum is %d\n', alpha)
+Alpha optimum is 1251
+
+w_L2
+
+w_L2 =
+
+    8.1915
+    0.5291
+    0.1076
+    0.0933
+    0.0024
+    0.0012
+   -0.0005
+   -0.0002
+   -0.0001
+   -0.0000
+
+
+disp('Part 3')
+Part 3
+w_ordinary
+
+w_ordinary =
+
+    7.9364
+    0.4596
+    0.9538
+    1.9247
+   -0.8556
+   -1.3396
+    0.6032
+    0.2417
+   -0.1618
+    0.0217
+
+
+echo off
+BE700HW1prob2
+disp('Part 2')
+Part 2
+
+fprintf('Alpha optimum is %d\n', alpha)
+Alpha optimum is 1251
+
+w_L2
+
+w_L2 =
+
+    8.1915
+    0.5291
+    0.1076
+    0.0933
+    0.0024
+    0.0012
+   -0.0005
+   -0.0002
+   -0.0001
+   -0.0000
+
+
+disp('Part 3')
+Part 3
+w_ordinary
+
+w_ordinary =
+
+    7.9364
+    0.4596
+    0.9538
+    1.9247
+   -0.8556
+   -1.3396
+    0.6032
+    0.2417
+   -0.1618
+    0.0217
+
+
+echo off
