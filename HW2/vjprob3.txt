@@ -1,0 +1,224 @@
+ResultTable
+
+ResultTable =
+
+  4×5 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>SampleNumber</strong>    <strong>Class1QProb</strong>    <strong>Class2QProb</strong>    <strong>Class3QProb</strong>     <strong>classification</strong>  
+    <strong>____________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>_________________</strong>
+
+         1             0.12985      0.0029045     6.9147e-08     'Iris-sertosa'   
+         2          1.4121e-19       0.017232        0.11379     'Iris-virginica' 
+         3          6.9678e-11        0.16015       0.081672     'Iris-versicolor'
+         4          3.5286e-11        0.10984        0.15887     'Iris-virginica' 
+
+
+disp('I recognize that my contours are incorrect, but I am not sure how to fix it')
+I recognize that my contours are incorrect, but I am not sure how to fix it
+
+echo off
+prob3
+
+ans =
+
+  8×5 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>    <strong>Var2</strong>    <strong>Var3</strong>    <strong>Var4</strong>        <strong>Var5</strong>     
+    <strong>____</strong>    <strong>____</strong>    <strong>____</strong>    <strong>____</strong>    <strong>_____________</strong>
+
+    5.1     3.5     1.4     0.2     'Iris-setosa'
+    4.9       3     1.4     0.2     'Iris-setosa'
+    4.7     3.2     1.3     0.2     'Iris-setosa'
+    4.6     3.1     1.5     0.2     'Iris-setosa'
+      5     3.6     1.4     0.2     'Iris-setosa'
+    5.4     3.9     1.7     0.4     'Iris-setosa'
+    4.6     3.4     1.4     0.3     'Iris-setosa'
+      5     3.4     1.5     0.2     'Iris-setosa'
+
+ResultTable
+
+ResultTable =
+
+  4×5 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>SampleNumber</strong>    <strong>Class1QProb</strong>    <strong>Class2QProb</strong>    <strong>Class3QProb</strong>     <strong>classification</strong>  
+    <strong>____________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>_________________</strong>
+
+         1             0.12985      0.0029045     6.9147e-08     'Iris-sertosa'   
+         2          1.4121e-19       0.017232        0.11379     'Iris-virginica' 
+         3          6.9678e-11        0.16015       0.081672     'Iris-versicolor'
+         4          3.5286e-11        0.10984        0.15887     'Iris-virginica' 
+
+
+disp('I recognize that my contours are incorrect, but I am not sure how to fix it')
+I recognize that my contours are incorrect, but I am not sure how to fix it
+
+echo off
+{Error using publish
+The output file "G:\My Drive\Boston University\05_MS1\Spring\BE700 ML\HW2\html\prob3.pdf" is not writable.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mdbpublish', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\codetools\mdbpublish.m', 55)" style="font-weight:bold">mdbpublish</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\codetools\mdbpublish.m',55,0)">line 55</a>)
+outputPath = publish(file, options);
+} 
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('open', 'C:\Program Files\MATLAB\R2018b\toolbox\matlab\general\open.m', 52)" style="font-weight:bold">open</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018b\toolbox\matlab\general\open.m',52,0)">line 52</a>)
+NAME must be a character vector or string scalar.
+} 
+prob2
+
+ans =
+
+  8×7 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>      <strong>Var2</strong>       <strong>Var3</strong>        <strong>Var4</strong>         <strong>Var5</strong>        <strong>Var6</strong>          <strong>Var7</strong>    
+    <strong>____</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>___________</strong>
+
+      1     'Circle'    'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'    'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'    'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     ''          'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'    'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+    NaN     'Circle'    'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'    'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     ''          'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+
+A =
+
+  12×7 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>       <strong>Var2</strong>         <strong>Var3</strong>        <strong>Var4</strong>         <strong>Var5</strong>        <strong>Var6</strong>          <strong>Var7</strong>    
+    <strong>____</strong>    <strong>___________</strong>    <strong>_______</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>___________</strong>
+
+      1     'Circle'       'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'       'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'       'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     'Irregular'    'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'       'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+      6     'Circle'       'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'       'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+      9     'Triangle'     'Small'    'Convex'     'Rough'     'Dark'       'Benign'   
+     10     'Circle'       'Large'    'Flat'       'Smooth'    'Neutral'    'Benign'   
+     11     'Irregular'    'Large'    'Concave'    'Smooth'    'Dark'       'Benign'   
+     12     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+
+ResultTable =
+
+  5×4 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>     <strong>Var2</strong>       <strong>Var3</strong>         <strong>Var4</strong>    
+    <strong>____</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>___________</strong>
+
+     1      -5.5576    -6.9439    'benign'   
+     2      -7.8602    -7.8602    'malignant'
+     3      -3.9482    -4.2358    'benign'   
+     4         -Inf       -Inf    'malignant'
+     5      -4.6413       -Inf    'benign'   
+
+prob2
+
+ans =
+
+  8×7 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>      <strong>Var2</strong>       <strong>Var3</strong>        <strong>Var4</strong>         <strong>Var5</strong>        <strong>Var6</strong>          <strong>Var7</strong>    
+    <strong>____</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>___________</strong>
+
+      1     'Circle'    'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'    'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'    'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     ''          'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'    'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+    NaN     'Circle'    'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'    'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     ''          'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+
+A =
+
+  12×7 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>       <strong>Var2</strong>         <strong>Var3</strong>        <strong>Var4</strong>         <strong>Var5</strong>        <strong>Var6</strong>          <strong>Var7</strong>    
+    <strong>____</strong>    <strong>___________</strong>    <strong>_______</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>___________</strong>
+
+      1     'Circle'       'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'       'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'       'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     'Irregular'    'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'       'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+      6     'Circle'       'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'       'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+      9     'Triangle'     'Small'    'Convex'     'Rough'     'Dark'       'Benign'   
+     10     'Circle'       'Large'    'Flat'       'Smooth'    'Neutral'    'Benign'   
+     11     'Irregular'    'Large'    'Concave'    'Smooth'    'Dark'       'Benign'   
+     12     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+
+ResultTable =
+
+  5×4 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>     <strong>Var2</strong>       <strong>Var3</strong>         <strong>Var4</strong>    
+    <strong>____</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>___________</strong>
+
+     1      -5.5576    -6.9439    'benign'   
+     2      -7.8602    -7.8602    'malignant'
+     3      -3.9482    -4.2358    'benign'   
+     4         -Inf       -Inf    'malignant'
+     5      -4.6413       -Inf    'benign'   
+
+prob2
+
+ans =
+
+  8×7 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>      <strong>Var2</strong>       <strong>Var3</strong>        <strong>Var4</strong>         <strong>Var5</strong>        <strong>Var6</strong>          <strong>Var7</strong>    
+    <strong>____</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>___________</strong>
+
+      1     'Circle'    'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'    'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'    'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     ''          'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'    'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+    NaN     'Circle'    'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'    'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     ''          'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+
+A =
+
+  12×7 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Var1</strong>       <strong>Var2</strong>         <strong>Var3</strong>        <strong>Var4</strong>         <strong>Var5</strong>        <strong>Var6</strong>          <strong>Var7</strong>    
+    <strong>____</strong>    <strong>___________</strong>    <strong>_______</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>___________</strong>
+
+      1     'Circle'       'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'       'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'       'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     'Irregular'    'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'       'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+      6     'Circle'       'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'       'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+      9     'Triangle'     'Small'    'Convex'     'Rough'     'Dark'       'Benign'   
+     10     'Circle'       'Large'    'Flat'       'Smooth'    'Neutral'    'Benign'   
+     11     'Irregular'    'Large'    'Concave'    'Smooth'    'Dark'       'Benign'   
+     12     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+
+ResultTable =
+
+  5×4 <a href="matlab:helpPopup table" style="font-weight:bold">table</a>
+
+    <strong>Sample</strong>    <strong>LogNegProb</strong>    <strong>LogPosProb</strong>    <strong>Classification</strong>
+    <strong>______</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______________</strong>
+
+      1        -5.5576       -6.9439       'benign'     
+      2        -7.8602       -7.8602       'malignant'  
+      3        -3.9482       -4.2358       'benign'     
+      4           -Inf          -Inf       'malignant'  
+      5        -4.6413          -Inf       'benign'     
+

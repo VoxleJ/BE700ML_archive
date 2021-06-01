@@ -1,0 +1,289 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prob2</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-29"><meta name="DC.source" content="prob2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">prob2</a></li><li><a href="#2">Part A</a></li><li><a href="#3">Part B</a></li></ul></div><h2 id="1">prob2</h2><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+</pre><h2 id="2">Part A</h2><pre class="codeinput">opts = detectImportOptions(<span class="string">'biopsy_data_missing_values.csv'</span>, <span class="string">'NumHeaderLines'</span>, 1');
+preview(<span class="string">'biopsy_data_missing_values.csv'</span>, opts)
+
+A = readtable(<span class="string">'biopsy_data_missing_values.csv'</span>, <span class="string">'HeaderLines'</span>, 1);
+
+<span class="keyword">for</span> i = 1:height(A)
+    <span class="keyword">if</span> isempty(A.Var2{i})
+        A.Var2{i} = <span class="string">'Irregular'</span>;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+
+
+nanind = find(isnan(A.Var1));
+var1tmp = A.Var1;
+var1tmp(nanind(1)) = 6;
+var1tmp(nanind(2)) = 10;
+A.Var1 = var1tmp;
+
+A
+</pre><pre class="codeoutput">
+ans =
+
+  8&times;7 table
+
+    Var1      Var2       Var3        Var4         Var5        Var6          Var7    
+    ____    ________    _______    _________    ________    _________    ___________
+
+      1     'Circle'    'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'    'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'    'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     ''          'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'    'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+    NaN     'Circle'    'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'    'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     ''          'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+
+A =
+
+  12&times;7 table
+
+    Var1       Var2         Var3        Var4         Var5        Var6          Var7    
+    ____    ___________    _______    _________    ________    _________    ___________
+
+      1     'Circle'       'Large'    'Convex'     'Smooth'    'Dark'       'Malignant'
+      2     'Circle'       'Large'    'Concave'    'Smooth'    'Dark'       'Malignant'
+      3     'Circle'       'Large'    'Flat'       'Smooth'    'Red'        'Malignant'
+      4     'Irregular'    'Small'    'Concave'    'Rough'     'Dark'       'Malignant'
+      5     'Circle'       'Large'    'Flat'       'Rough'     'Neutral'    'Malignant'
+      6     'Circle'       'Large'    'Concave'    'Rough'     'Dark'       'Malignant'
+      7     'Circle'       'Large'    'Convex'     'Smooth'    'Neutral'    'Benign'   
+      8     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+      9     'Triangle'     'Small'    'Convex'     'Rough'     'Dark'       'Benign'   
+     10     'Circle'       'Large'    'Flat'       'Smooth'    'Neutral'    'Benign'   
+     11     'Irregular'    'Large'    'Concave'    'Smooth'    'Dark'       'Benign'   
+     12     'Irregular'    'Large'    'Concave'    'Smooth'    'Red'        'Benign'   
+
+</pre><h2 id="3">Part B</h2><pre class="codeinput">ns1 = {<span class="string">'Irregular'</span>, <span class="string">'Large'</span>, <span class="string">'Convex'</span>, <span class="string">'Rough'</span>, <span class="string">'Neutral'</span>};
+ns2 = {<span class="string">'Irregular'</span>, <span class="string">'Small'</span>, <span class="string">'Flat'</span>, <span class="string">'Rough'</span>, <span class="string">'Red'</span>};
+ns3 = {<span class="string">'Circle'</span>, <span class="string">'Large'</span>, <span class="string">'Concave'</span>, <span class="string">'Smooth'</span>, <span class="string">'Neutral'</span>};
+ns4 = {<span class="string">'Cirlce'</span>, <span class="string">'Large'</span>, <span class="string">'Convex'</span>, <span class="string">'Smooth'</span>, <span class="string">'Dark'</span>};
+ns5 = {<span class="string">'Triangle'</span>, <span class="string">'Large'</span>, <span class="string">'Concave'</span>, <span class="string">'Smooth'</span>, <span class="string">'Neutral'</span>};
+
+nstot = {ns1 ns2 ns3 ns4 ns5};
+
+<span class="comment">%for ns1 ex</span>
+
+
+A1 = A(1:6,:); <span class="comment">%malignant table (pos)</span>
+A2 = A(7:12,:); <span class="comment">%benign table (neg)</span>
+pc1 = 0.5;
+pc2 = 0.5;
+
+
+<span class="keyword">for</span> i = 1:length(nstot)
+    pshape1 = length(find(strcmp(A1.Var2, nstot{i}{1})))/height(A1);
+    prad1 = length(find(strcmp(A1.Var3, nstot{i}{2})))/height(A1);
+    pconcav1 = length(find(strcmp(A1.Var4, nstot{i}{3})))/height(A1);
+    ptext1 = length(find(strcmp(A1.Var5, nstot{i}{4})))/height(A1);
+    pcol1 = length(find(strcmp(A1.Var6, nstot{i}{5})))/height(A1);
+
+    posprob(i) = log(pshape1 * prad1 * pconcav1 * ptext1 * pcol1 * pc1);
+
+
+    nshape1 = length(find(strcmp(A2.Var2, nstot{i}{1})))/height(A2);
+    nrad1 = length(find(strcmp(A2.Var3, nstot{i}{2})))/height(A2);
+    nconcav1 = length(find(strcmp(A2.Var4, nstot{i}{3})))/height(A2);
+    ntext1 = length(find(strcmp(A2.Var5, nstot{i}{4})))/height(A2);
+    ncol1 = length(find(strcmp(A2.Var6, nstot{i}{5})))/height(A2);
+
+    negprob(i) = log(nshape1 * nrad1 * nconcav1 * ntext1 * ncol1 * pc2);
+
+<span class="keyword">end</span>
+
+
+<span class="keyword">for</span> ii = 1:5
+    <span class="keyword">if</span> negprob(ii) &gt; posprob(ii)
+        class{ii} = <span class="string">'benign'</span>;
+    <span class="keyword">else</span>
+        class{ii} = <span class="string">'malignant'</span>;
+        <span class="comment">%err on this side, to prompt pt to another test</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+
+samplenames = 1:5;
+LogNegProb = negprob;
+LogPosProb = posprob;
+varnames = {<span class="string">'Sample'</span>, <span class="string">'LogNegProb'</span>, <span class="string">'LogPosProb'</span>, <span class="string">'Classification'</span>};
+ResultTable = table(samplenames', LogNegProb', LogPosProb', class', <span class="string">'VariableNames'</span>, varnames)
+
+
+disp(<span class="string">'Sample 5 had was one of two triangle shapes, which was not contained in the Malignant group.'</span>)
+</pre><pre class="codeoutput">
+ResultTable =
+
+  5&times;4 table
+
+    Sample    LogNegProb    LogPosProb    Classification
+    ______    __________    __________    ______________
+
+      1        -5.5576       -6.9439       'benign'     
+      2        -7.8602       -7.8602       'malignant'  
+      3        -3.9482       -4.2358       'benign'     
+      4           -Inf          -Inf       'malignant'  
+      5        -4.6413          -Inf       'benign'     
+
+Sample 5 had was one of two triangle shapes, which was not contained in the Malignant group.
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prob2
+clear all
+close all
+
+
+%% Part A
+opts = detectImportOptions('biopsy_data_missing_values.csv', 'NumHeaderLines', 1');
+preview('biopsy_data_missing_values.csv', opts)
+
+A = readtable('biopsy_data_missing_values.csv', 'HeaderLines', 1);
+
+for i = 1:height(A)
+    if isempty(A.Var2{i})
+        A.Var2{i} = 'Irregular';
+    end
+end
+
+
+
+nanind = find(isnan(A.Var1));
+var1tmp = A.Var1;
+var1tmp(nanind(1)) = 6;
+var1tmp(nanind(2)) = 10;
+A.Var1 = var1tmp;
+
+A
+
+%% Part B
+
+ns1 = {'Irregular', 'Large', 'Convex', 'Rough', 'Neutral'};
+ns2 = {'Irregular', 'Small', 'Flat', 'Rough', 'Red'};
+ns3 = {'Circle', 'Large', 'Concave', 'Smooth', 'Neutral'};
+ns4 = {'Cirlce', 'Large', 'Convex', 'Smooth', 'Dark'};
+ns5 = {'Triangle', 'Large', 'Concave', 'Smooth', 'Neutral'};
+
+nstot = {ns1 ns2 ns3 ns4 ns5};
+
+%for ns1 ex
+
+
+A1 = A(1:6,:); %malignant table (pos)
+A2 = A(7:12,:); %benign table (neg)
+pc1 = 0.5;
+pc2 = 0.5;
+
+
+for i = 1:length(nstot)
+    pshape1 = length(find(strcmp(A1.Var2, nstot{i}{1})))/height(A1);
+    prad1 = length(find(strcmp(A1.Var3, nstot{i}{2})))/height(A1);
+    pconcav1 = length(find(strcmp(A1.Var4, nstot{i}{3})))/height(A1);
+    ptext1 = length(find(strcmp(A1.Var5, nstot{i}{4})))/height(A1);
+    pcol1 = length(find(strcmp(A1.Var6, nstot{i}{5})))/height(A1);
+
+    posprob(i) = log(pshape1 * prad1 * pconcav1 * ptext1 * pcol1 * pc1);
+    
+    
+    nshape1 = length(find(strcmp(A2.Var2, nstot{i}{1})))/height(A2);
+    nrad1 = length(find(strcmp(A2.Var3, nstot{i}{2})))/height(A2);
+    nconcav1 = length(find(strcmp(A2.Var4, nstot{i}{3})))/height(A2);
+    ntext1 = length(find(strcmp(A2.Var5, nstot{i}{4})))/height(A2);
+    ncol1 = length(find(strcmp(A2.Var6, nstot{i}{5})))/height(A2);
+
+    negprob(i) = log(nshape1 * nrad1 * nconcav1 * ntext1 * ncol1 * pc2);
+    
+end
+
+
+for ii = 1:5
+    if negprob(ii) > posprob(ii)
+        class{ii} = 'benign';
+    else
+        class{ii} = 'malignant';
+        %err on this side, to prompt pt to another test
+    end
+end
+
+        
+samplenames = 1:5;
+LogNegProb = negprob;
+LogPosProb = posprob;
+varnames = {'Sample', 'LogNegProb', 'LogPosProb', 'Classification'};
+ResultTable = table(samplenames', LogNegProb', LogPosProb', class', 'VariableNames', varnames)
+
+
+disp('Sample 5 had was one of two triangle shapes, which was not contained in the Malignant group.')
+
+##### SOURCE END #####
+--></body></html>

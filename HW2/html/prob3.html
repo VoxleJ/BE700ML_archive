@@ -1,0 +1,509 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prob3</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-29"><meta name="DC.source" content="prob3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">prob 3</a></li><li><a href="#2">Part B</a></li><li><a href="#3">Part C</a></li><li><a href="#4">Echoing Values</a></li></ul></div><h2 id="1">prob 3</h2><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+
+opts = detectImportOptions(<span class="string">'iris_dataset.csv'</span>, <span class="string">'NumHeaderLines'</span>, 1);
+preview(<span class="string">'iris_dataset.csv'</span>, opts)
+
+
+A = readtable(<span class="string">'iris_dataset.csv'</span>, <span class="string">'HeaderLines'</span>, 1);
+</pre><pre class="codeoutput">
+ans =
+
+  8&times;5 table
+
+    Var1    Var2    Var3    Var4        Var5     
+    ____    ____    ____    ____    _____________
+
+    5.1     3.5     1.4     0.2     'Iris-setosa'
+    4.9       3     1.4     0.2     'Iris-setosa'
+    4.7     3.2     1.3     0.2     'Iris-setosa'
+    4.6     3.1     1.5     0.2     'Iris-setosa'
+      5     3.6     1.4     0.2     'Iris-setosa'
+    5.4     3.9     1.7     0.4     'Iris-setosa'
+    4.6     3.4     1.4     0.3     'Iris-setosa'
+      5     3.4     1.5     0.2     'Iris-setosa'
+
+</pre><h2 id="2">Part B</h2><pre class="codeinput"><span class="comment">%split A into 3</span>
+indis = find(strcmp(A.Var5, <span class="string">'Iris-setosa'</span>));
+indver = find(strcmp(A.Var5, <span class="string">'Iris-versicolor'</span>));
+indvir = find(strcmp(A.Var5, <span class="string">'Iris-virginica'</span>));
+
+A1 = A(1:50,:);
+A2 = A(51:100,:);
+A3 = A(101:150,:);
+
+
+scatter(A1.Var1, A1.Var4, <span class="string">'r'</span>)
+hold <span class="string">on</span>
+scatter(A2.Var1, A2.Var4, <span class="string">'g'</span>)
+hold <span class="string">on</span>
+scatter(A3.Var1, A3.Var4, <span class="string">'b'</span>)
+axis([0 10 0 10])
+hold <span class="string">on</span>
+
+
+xlabel(<span class="string">'Sepal Length'</span>)
+ylabel(<span class="string">'Petal Width'</span>)
+
+x1 = 0:0.05:10;
+x4 = 0:0.05:10;
+[X1, X2] = meshgrid(x1,x4);
+
+sigma1 = 0.2;
+sigma4 = sigma1;
+amesh1 = 0;
+amesh1_x4 = 0;
+m = 50;
+pc1 = 50/150;
+pc2 = 50/150;
+pc3 = 50/150;
+
+<span class="keyword">for</span> i = 1:50
+   am1 =  exp(-(X1 - A1.Var1(i)).^2./(2*sigma1^2));
+   amesh1 = amesh1+am1;
+<span class="keyword">end</span>
+<span class="keyword">for</span> ii = 1:50
+   am4 =  exp(-(X2 - A1.Var4(ii)).^2./(2*sigma4^2));
+   amesh1_x4 = amesh1+am4;
+<span class="keyword">end</span>
+
+meshtotx1a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1;
+meshtotx4a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1_x4;
+totmesha1 = meshtotx1a1*meshtotx4a1 *pc1;
+
+
+contour(X1, X2, totmesha1, 0:0.03:0.15)
+<span class="comment">%abc.levels = [0:0.03:0.15]</span>
+
+<span class="comment">%repeat for other groups</span>
+
+<span class="keyword">for</span> i = 1:50
+   am1 =  exp(-(X1 - A2.Var1(i)).^2./(2*sigma1^2));
+   amesh1 = amesh1+am1;
+<span class="keyword">end</span>
+<span class="keyword">for</span> ii = 1:50
+   am4 =  exp(-(X2 - A2.Var4(ii)).^2./(2*sigma4^2));
+   amesh1_x4 = amesh1+am4;
+<span class="keyword">end</span>
+meshtotx1a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1;
+meshtotx4a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1_x4;
+totmesha1 = meshtotx1a1*meshtotx4a1 *pc1;
+contour(X1, X2, totmesha1, 0:0.03:0.15)
+
+
+
+<span class="keyword">for</span> i = 1:50
+   am1 =  exp(-(X1 - A3.Var1(i)).^2./(2*sigma1^2));
+   amesh1 = amesh1+am1;
+<span class="keyword">end</span>
+<span class="keyword">for</span> ii = 1:50
+   am4 =  exp(-(X2 - A3.Var4(ii)).^2./(2*sigma4^2));
+   amesh1_x4 = amesh1+am4;
+<span class="keyword">end</span>
+meshtotx1a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1;
+meshtotx4a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1_x4;
+totmesha1 = meshtotx1a1*meshtotx4a1 *pc1;
+contour(X1, X2, totmesha1, 0:0.03:0.15)
+</pre><img vspace="5" hspace="5" src="prob3_01.png" alt=""> <h2 id="3">Part C</h2><pre class="codeinput">x1new = [5.5, 7, 6.5, 6.2];
+x4new = [0.5, 1.8, 1.5, 1.7];
+bm2 = 50*[];
+bm4 = 50*[];
+bm5 = 5*[];
+bm6 = 5*[];
+<span class="comment">%c1</span>
+<span class="keyword">for</span> i = 1:length(x1new)
+    <span class="keyword">for</span> kk = 1:50
+        bm1 =  exp(-(x1new(i) - A1.Var1(kk))^2/(2*sigma1^2));
+        bm2(kk) = bm1;
+
+    <span class="keyword">end</span>
+    bm5(i) = sum(bm2);
+<span class="keyword">end</span>
+<span class="keyword">for</span> i = 1:length(x1new)
+    <span class="keyword">for</span> kk = 1:50
+        bm3 =  exp(-(x4new(i) - A1.Var4(kk))^2/(2*sigma1^2));
+        bm4(kk) = bm3;
+    <span class="keyword">end</span>
+    bm6(i) = sum(bm4);
+<span class="keyword">end</span>
+<span class="comment">%now have the sum of gauss</span>
+<span class="comment">%mult k, attributes and P(c1)</span>
+
+class1Q = (1/m*1/(sigma1*sqrt(2*pi)) * bm5) .*  (1/m*1/(sigma1*sqrt(2*pi)) * bm6) .* pc1;
+
+
+
+
+<span class="comment">%c2</span>
+<span class="keyword">for</span> i = 1:length(x1new)
+    <span class="keyword">for</span> kk = 1:50
+        bm1 =  exp(-(x1new(i) - A2.Var1(kk))^2/(2*sigma1^2));
+        bm2(kk) = bm1;
+
+    <span class="keyword">end</span>
+    bm5(i) = sum(bm2);
+<span class="keyword">end</span>
+<span class="keyword">for</span> i = 1:length(x1new)
+    <span class="keyword">for</span> kk = 1:50
+        bm3 =  exp(-(x4new(i) - A2.Var4(kk))^2/(2*sigma1^2));
+        bm4(kk) = bm3;
+    <span class="keyword">end</span>
+    bm6(i) = sum(bm4);
+<span class="keyword">end</span>
+<span class="comment">%now have the sum of gauss</span>
+
+class2Q = (1/m*1/(sigma1*sqrt(2*pi)) * bm5) .*  (1/m*1/(sigma1*sqrt(2*pi)) * bm6) .* pc2;
+
+
+<span class="comment">%c3</span>
+<span class="keyword">for</span> i = 1:length(x1new)
+    <span class="keyword">for</span> kk = 1:50
+        bm1 =  exp(-(x1new(i) - A3.Var1(kk))^2/(2*sigma1^2));
+        bm2(kk) = bm1;
+
+    <span class="keyword">end</span>
+    bm5(i) = sum(bm2);
+<span class="keyword">end</span>
+<span class="keyword">for</span> i = 1:length(x1new)
+    <span class="keyword">for</span> kk = 1:50
+        bm3 =  exp(-(x4new(i) - A3.Var4(kk))^2/(2*sigma1^2));
+        bm4(kk) = bm3;
+    <span class="keyword">end</span>
+    bm6(i) = sum(bm4);
+<span class="keyword">end</span>
+<span class="comment">%now have the sum of gauss</span>
+
+
+class3Q = (1/m*1/(sigma1*sqrt(2*pi)) * bm5) .*  (1/m*1/(sigma1*sqrt(2*pi)) * bm6) .* pc3;
+
+
+<span class="keyword">for</span> i = 1:length(x1new)
+    <span class="keyword">if</span> class1Q(i) &gt; class2Q(i) &amp;&amp; class3Q(i)
+        classification_tot{i} = <span class="string">'Iris-sertosa'</span>;
+    <span class="keyword">elseif</span> class2Q(i) &gt; class3Q(i) &amp;&amp; class1Q(i)
+        classification_tot{i} = <span class="string">'Iris-versicolor'</span>;
+    <span class="keyword">elseif</span> class3Q(i) &gt; class2Q(i) &amp;&amp; class1Q(i)
+        classification_tot{i} = <span class="string">'Iris-virginica'</span>;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+SampleNumber = 1:4;
+
+varNames = {<span class="string">'SampleNumber'</span>, <span class="string">'Class1QProb'</span>, <span class="string">'Class2QProb'</span>, <span class="string">'Class3QProb'</span>, <span class="string">'classification'</span>};
+ResultTable = table(SampleNumber', class1Q', class2Q', class3Q', classification_tot', <span class="string">'VariableNames'</span>, varNames);
+ae = {<span class="string">'y'</span>, <span class="string">'c'</span>, <span class="string">'k'</span>, <span class="string">'m'</span>};
+<span class="keyword">for</span> i = 1:length(x1new)
+    scatter(x1new(i), x4new(i), ae{i}, <span class="string">'filled'</span>)
+    hold <span class="string">on</span>
+<span class="keyword">end</span>
+
+legend(<span class="string">'Iris-sertosa'</span>, <span class="string">'Iris-versicolor'</span>, <span class="string">'Iris-virginica'</span>, <span class="string">'Contour1'</span>, <span class="string">'Contour2'</span>, <span class="string">'Contour3'</span>, <span class="string">'New1'</span>, <span class="string">'New2'</span>, <span class="string">'New3'</span>, <span class="string">'New4'</span>, <span class="string">'Location'</span>, <span class="string">'west'</span>)
+xlabel(<span class="string">'Sepal Length'</span>)
+ylabel(<span class="string">'Petal Width'</span>)
+title(<span class="string">'Plot of Data, Contours and Predicted Values'</span>)
+</pre><img vspace="5" hspace="5" src="prob3_02.png" alt=""> <h2 id="4">Echoing Values</h2><pre class="codeinput">diary <span class="string">vjprob3.txt</span>
+echo <span class="string">on</span>
+ResultTable
+
+disp(<span class="string">'I recognize that my contours are incorrect, but I am not sure how to fix it'</span>)
+
+echo <span class="string">off</span>
+</pre><pre class="codeoutput">ResultTable
+
+ResultTable =
+
+  4&times;5 table
+
+    SampleNumber    Class1QProb    Class2QProb    Class3QProb     classification  
+    ____________    ___________    ___________    ___________    _________________
+
+         1             0.12985      0.0029045     6.9147e-08     'Iris-sertosa'   
+         2          1.4121e-19       0.017232        0.11379     'Iris-virginica' 
+         3          6.9678e-11        0.16015       0.081672     'Iris-versicolor'
+         4          3.5286e-11        0.10984        0.15887     'Iris-virginica' 
+
+
+disp('I recognize that my contours are incorrect, but I am not sure how to fix it')
+I recognize that my contours are incorrect, but I am not sure how to fix it
+
+echo off
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prob 3
+clear all
+close all
+
+opts = detectImportOptions('iris_dataset.csv', 'NumHeaderLines', 1);
+preview('iris_dataset.csv', opts)
+
+
+A = readtable('iris_dataset.csv', 'HeaderLines', 1);
+
+
+%% Part B
+%split A into 3
+indis = find(strcmp(A.Var5, 'Iris-setosa'));
+indver = find(strcmp(A.Var5, 'Iris-versicolor'));
+indvir = find(strcmp(A.Var5, 'Iris-virginica'));
+
+A1 = A(1:50,:);
+A2 = A(51:100,:);
+A3 = A(101:150,:);
+
+
+scatter(A1.Var1, A1.Var4, 'r')
+hold on
+scatter(A2.Var1, A2.Var4, 'g')
+hold on
+scatter(A3.Var1, A3.Var4, 'b')
+axis([0 10 0 10])
+hold on
+
+
+xlabel('Sepal Length')
+ylabel('Petal Width')
+
+x1 = 0:0.05:10;
+x4 = 0:0.05:10;
+[X1, X2] = meshgrid(x1,x4);
+
+sigma1 = 0.2;
+sigma4 = sigma1;
+amesh1 = 0;
+amesh1_x4 = 0;
+m = 50;
+pc1 = 50/150;
+pc2 = 50/150;
+pc3 = 50/150;
+
+for i = 1:50
+   am1 =  exp(-(X1 - A1.Var1(i)).^2./(2*sigma1^2));
+   amesh1 = amesh1+am1;
+end
+for ii = 1:50
+   am4 =  exp(-(X2 - A1.Var4(ii)).^2./(2*sigma4^2));
+   amesh1_x4 = amesh1+am4;
+end
+
+meshtotx1a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1;
+meshtotx4a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1_x4;
+totmesha1 = meshtotx1a1*meshtotx4a1 *pc1;
+
+
+contour(X1, X2, totmesha1, 0:0.03:0.15)
+%abc.levels = [0:0.03:0.15]
+
+%repeat for other groups
+
+for i = 1:50
+   am1 =  exp(-(X1 - A2.Var1(i)).^2./(2*sigma1^2));
+   amesh1 = amesh1+am1;
+end
+for ii = 1:50
+   am4 =  exp(-(X2 - A2.Var4(ii)).^2./(2*sigma4^2));
+   amesh1_x4 = amesh1+am4;
+end
+meshtotx1a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1;
+meshtotx4a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1_x4;
+totmesha1 = meshtotx1a1*meshtotx4a1 *pc1;
+contour(X1, X2, totmesha1, 0:0.03:0.15)
+
+
+
+for i = 1:50
+   am1 =  exp(-(X1 - A3.Var1(i)).^2./(2*sigma1^2));
+   amesh1 = amesh1+am1;
+end
+for ii = 1:50
+   am4 =  exp(-(X2 - A3.Var4(ii)).^2./(2*sigma4^2));
+   amesh1_x4 = amesh1+am4;
+end
+meshtotx1a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1;
+meshtotx4a1 = 1/m*1/(sigma1*sqrt(2*pi)) .* amesh1_x4;
+totmesha1 = meshtotx1a1*meshtotx4a1 *pc1;
+contour(X1, X2, totmesha1, 0:0.03:0.15)
+
+
+
+%% Part C
+
+
+x1new = [5.5, 7, 6.5, 6.2];
+x4new = [0.5, 1.8, 1.5, 1.7];
+bm2 = 50*[];
+bm4 = 50*[];
+bm5 = 5*[];
+bm6 = 5*[];
+%c1
+for i = 1:length(x1new)
+    for kk = 1:50
+        bm1 =  exp(-(x1new(i) - A1.Var1(kk))^2/(2*sigma1^2));
+        bm2(kk) = bm1;
+        
+    end
+    bm5(i) = sum(bm2);
+end
+for i = 1:length(x1new)
+    for kk = 1:50
+        bm3 =  exp(-(x4new(i) - A1.Var4(kk))^2/(2*sigma1^2));
+        bm4(kk) = bm3;
+    end
+    bm6(i) = sum(bm4);
+end
+%now have the sum of gauss
+%mult k, attributes and P(c1)
+
+class1Q = (1/m*1/(sigma1*sqrt(2*pi)) * bm5) .*  (1/m*1/(sigma1*sqrt(2*pi)) * bm6) .* pc1;
+
+
+
+
+%c2
+for i = 1:length(x1new)
+    for kk = 1:50
+        bm1 =  exp(-(x1new(i) - A2.Var1(kk))^2/(2*sigma1^2));
+        bm2(kk) = bm1;
+        
+    end
+    bm5(i) = sum(bm2);
+end
+for i = 1:length(x1new)
+    for kk = 1:50
+        bm3 =  exp(-(x4new(i) - A2.Var4(kk))^2/(2*sigma1^2));
+        bm4(kk) = bm3;
+    end
+    bm6(i) = sum(bm4);
+end
+%now have the sum of gauss
+
+class2Q = (1/m*1/(sigma1*sqrt(2*pi)) * bm5) .*  (1/m*1/(sigma1*sqrt(2*pi)) * bm6) .* pc2;
+
+
+%c3
+for i = 1:length(x1new)
+    for kk = 1:50
+        bm1 =  exp(-(x1new(i) - A3.Var1(kk))^2/(2*sigma1^2));
+        bm2(kk) = bm1;
+        
+    end
+    bm5(i) = sum(bm2);
+end
+for i = 1:length(x1new)
+    for kk = 1:50
+        bm3 =  exp(-(x4new(i) - A3.Var4(kk))^2/(2*sigma1^2));
+        bm4(kk) = bm3;
+    end
+    bm6(i) = sum(bm4);
+end
+%now have the sum of gauss
+
+
+class3Q = (1/m*1/(sigma1*sqrt(2*pi)) * bm5) .*  (1/m*1/(sigma1*sqrt(2*pi)) * bm6) .* pc3;
+
+
+for i = 1:length(x1new)
+    if class1Q(i) > class2Q(i) && class3Q(i)
+        classification_tot{i} = 'Iris-sertosa';
+    elseif class2Q(i) > class3Q(i) && class1Q(i)
+        classification_tot{i} = 'Iris-versicolor';
+    elseif class3Q(i) > class2Q(i) && class1Q(i)
+        classification_tot{i} = 'Iris-virginica';
+    end
+end
+
+SampleNumber = 1:4;
+
+varNames = {'SampleNumber', 'Class1QProb', 'Class2QProb', 'Class3QProb', 'classification'};
+ResultTable = table(SampleNumber', class1Q', class2Q', class3Q', classification_tot', 'VariableNames', varNames);
+ae = {'y', 'c', 'k', 'm'};
+for i = 1:length(x1new)
+    scatter(x1new(i), x4new(i), ae{i}, 'filled')
+    hold on
+end
+
+legend('Iris-sertosa', 'Iris-versicolor', 'Iris-virginica', 'Contour1', 'Contour2', 'Contour3', 'New1', 'New2', 'New3', 'New4', 'Location', 'west')
+xlabel('Sepal Length')
+ylabel('Petal Width')
+title('Plot of Data, Contours and Predicted Values')
+
+
+%% Echoing Values
+
+diary vjprob3.txt
+echo on
+ResultTable
+
+disp('I recognize that my contours are incorrect, but I am not sure how to fix it')
+
+echo off
+
+##### SOURCE END #####
+--></body></html>
